@@ -1,0 +1,70 @@
+{% extends "index.html" %}
+{% block content %}
+<section class="section">
+    <div class="wrapper active-popup">
+        <span class="icon-close">
+            <a href="{% url 'index' %}"><i class='bx bx-x'></i></a>
+        </span>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+            <div class="logreg-box">
+            <!--login form-->
+            <div class="form-box login">
+                    <div class="logreg-title">
+                        <h2>Login</h2>
+                        <p>Please login To Access Dimension Dash</p>
+                    </div>
+
+                    <form action="#" method="post">
+                        {% csrf_token %}
+                        <div class="input-box">
+                            <span class="icon"><i class='bx bxs-envelope'>
+                            </i></span>
+                            <!-- <input type="email" required> -->
+                            {{form.username}}
+                            <label>Username:</label>
+                        </div>
+                        <div class="input-box">
+                            <span class="icon"><i class='bx bxs-lock' >
+                            </i></span>
+                            <!-- <input type="password" required> -->
+                            {{form.password}}
+                            <label>Password:</label>   
+                        </div>
+
+                        <div class="remember-forgot">
+                            <label><input type="checkbox">
+                            Remember Me?</label>
+                            <a href="#">Forget password?</a>
+                        </div>
+
+                            <button type="submit" class="btn">Login</button>
+
+                            <div class="logreg-link">
+                                <p>Don't have an account? <a href="{% url 'register' %}" class="register-link">Register</a>
+                                </p>
+                            </div>
+                    </form>
+
+            </div>
+
+            <!-- <div class="media-options">
+            <a href="#">
+                <i class='bx bxl-google'></i>
+                <span>Login with Google</span>
+            </a>
+            </div>
+            <div class="media-options">
+            <a href="#">
+                <i class='bx bxl-facebook-square'></i>
+                <span>Login with Facebook</span>
+            </a>
+            </div> -->
+    </div>
+</section>
+{% endblock %}

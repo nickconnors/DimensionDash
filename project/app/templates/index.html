@@ -13,128 +13,30 @@
 </head>
 
 <body>
-
     <header class="header">
         <a href="#" class="logo">Dimension Dash</a>
 
         <nav class="navbar">
-            <a>Home</a>
-            <a href="contact">Contact Us</a>
-            <a href="reviewus">Review-Us</a>
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'contact' %}">Contact Us</a>
+            <a href="{% url 'reviewus' %}">Review-Us</a>
             <a href="play.html">Play</a>
-            <button class="btnLogin-popup">Login</button>
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <!-- <button class="btnLogin-popup" onclick="window.location.href='login';">Login</button> -->
+                <a href="{% url 'login' %}"><button class="btnLogin-popup">Login</button></a>
+            {% endif %}
+            <!-- <a href="register">Login</button> -->
         </nav>
     </header>
 
     <section class="section">
-        <div class="wrapper">
-            <span class="icon-close">
-                <i class='bx bx-x'></i>
-            </span>
-
-             <div class="logreg-box">
-                <!--login form-->
-                <div class="form-box login">
-                     <div class="logreg-title">
-                          <h2>Login</h2>
-                          <p>Please login To Access Dimension Dash</p>
-                        </div>
-
-                      <form action="#">
-                           <div class="input-box">
-                                <span class="icon"><i class='bx bxs-envelope'>
-                                </i></span>
-                                <input type="email" required>
-                                <label>Email:</label>
-                           </div>
-                           <div class="input-box">
-                                <span class="icon"><i class='bx bxs-lock' >
-                                </i></span>
-                                <input type="password" required>
-                                <label>Password:</label>   
-                           </div>
-
-                           <div class="remember-forgot">
-                                <label><input type="checkbox">
-                                Remember Me?</label>
-                                <a href="#">Forget password?</a>
-                            </div>
-
-                                <button type="submit" class="btn">Login</button>
-
-                                <div class="logreg-link">
-                                    <p>Don't have an account? <a href="#" class="register-link">Register</a>
-                                    </p>
-                                </div>
-                      </form>
-
-                </div>
-
-
-                <!-- Register form-->
-                <div class="form-box register">
-                    <div class="logreg-title">
-                         <h2>Registeration</h2>
-                         <p>Please Provide The Following To Verify Your </p>
-                       </div>
-
-                     <form action="#">
-                        <div class="input-box">
-                            <span class="icon"><i class='bx bx-user'></i>
-                            </i></span>
-                            <input type="text" required>
-                            <label>Username</label>
-                       </div>
-                          <div class="input-box">
-                               <span class="icon"><i class='bx bxs-envelope'>
-                               </i></span>
-                               <input type="email" required>
-                               <label>Email:</label>
-                          </div>
-                          <div class="input-box">
-                               <span class="icon"><i class='bx bxs-lock' >
-                               </i></span>
-                               <input type="password" required>
-                               <label>Password:</label>
-                          </div>
-
-                          <div class="remember-forgot">
-                               <label><input type="checkbox">I agree to the terms & conditions </label>
-                           </div>
-
-
-                               <button type="submit" class="btn">Register</button>
-
-                               <div class="logreg-link">
-                                   <p>Already have an account? <a href="#" class="login-link">Login</a>
-                                   </p>
-                               </div>
-                     </form>
-             </div>
-             <div class="media-options">
-                <a href="#">
-                    <i class='bx bxl-google'></i>
-                    <span>Login with Google</span>
-                </a>
-             </div>
-             <div class="media-options">
-                <a href="#">
-                    <i class='bx bxl-facebook-square'></i>
-                    <span>Login with Facebook</span>
-                </a>
-             </div>
-
-
-
-
-        </div>
     </section>
 
-
-
+    {% block content %}{% endblock %}
 
     <script src="{% static 'script.js' %}"></script>
     <script defer src="{% static 'activePage.js' %}"></script>
 </body>
-
 </html>
