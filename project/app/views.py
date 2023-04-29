@@ -10,7 +10,10 @@ def contact(request):
     return render(request, 'contact.html')
 
 def reviewus(request):
-    return render(request, 'reviewus.html')
+    if request.user.is_authenticated:
+        return render(request, 'reviewus.html')
+    else:
+        return redirect('index')
 
 def registerUser(request):
     if request.method == "POST":
