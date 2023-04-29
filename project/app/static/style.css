@@ -9,6 +9,17 @@
 
 }
 
+html,body{
+    display: grid;
+    height: 100%;
+    place-items: center;
+    text-align: center;
+    background: url(back.png) no-repeat;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+  }
+
 .header {
     position: fixed;
     top: 0;

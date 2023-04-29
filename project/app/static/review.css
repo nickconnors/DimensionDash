@@ -4,8 +4,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
 }
+
 html,body{
   display: grid;
   height: 100%;
@@ -27,6 +28,8 @@ html,body{
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  box-sizing: border-box;
+  margin: 0;
 }
 .container .post{
   display: none;
@@ -98,6 +101,7 @@ form header{
   margin: 5px 0 20px 0;
   text-align: center;
   transition: all 0.2s ease;
+  font-family: 'Poppins', sans-serif;
 }
 form .textarea{
   height: 100px;
@@ -114,6 +118,7 @@ form .textarea textarea{
   padding: 10px;
   font-size: 17px;
   resize: none;
+  font-family: 'Poppins', sans-serif;
 }
 .textarea textarea:focus{
   border-color: #444;
@@ -135,6 +140,7 @@ form .btn button{
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
 }
 form .btn button:hover{
   background: #390963;;
