@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, logout, login
-from .forms import LoginForm, SignupForm
+from .forms import LoginForm, SignupForm, ContactForm
+from django.core.mail import send_mail
+from django.conf import settings
 
 def index(request):
     return render(request, 'index.html')
@@ -10,7 +12,24 @@ def about(request):
     return render(request, 'about.html')
 
 def contact(request):
-    return render(request, 'contact.html')
+    if request.method == "POST":
+        form = ContactForm(data=request.POST)
+        if form.is_valid():
+            issue = form.cleaned_data['issue']
+            email = form.cleaned_data['email']
+            name = form.cleaned_data['name']
+            message = form.cleaned_data['message']
+            send_mail(
+    		    subject=issue,
+    		    message=f"From: {email} ({name})\nMessage:\n{message}",
+    		    from_email=settings.EMAIL_HOST_USER,
+    		    recipient_list=[settings.EMAIL_HOST_USER])
+            messages.success(request, "Message sent")
+        else:
+            messages.error(request, "Please fill in all fields")
+    else:
+        form = ContactForm()
+    return render(request, 'contact.html', {'form' : form})
 
 def reviewus(request):
     if request.user.is_authenticated:

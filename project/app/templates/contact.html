@@ -1,3 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="{% static 'contact.css' %}">
+<form method="post">
+    {% csrf_token %}
+    <div class="container signinForm"> 
+        {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <div class="form signin">
+                <div class="inputBox">
+                    {{form.name}}
+                </div>
+                <div class="inputBox">
+                    {{form.email}}
+                </div>
+                <div class="inputBox">
+                    {{form.issue}}
+                </div>
+                <div class="inputBox">
+                    {{form.message}}
+                </div>
+                <div class="inputBox">
+                    <input type="submit" value="Submit">
+                </div>
+        </div>
+    </div>
+</form>
 {% endblock %}

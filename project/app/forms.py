@@ -18,3 +18,20 @@ class LoginForm(AuthenticationForm):
 
     class Meta:
         fields = ['username', 'password']
+
+issue_choices = [(None, 'Select an issue'),
+                 ('lag', 'Lag'), 
+                 ('bug', 'Bug'), 
+                 ('update', 'Software Update'), 
+                 ('multiplayer', 'Multiplayer'), 
+                 ('singleplayer', 'Single Player'),
+                 ('other', 'Other')]
+
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'placeholder': 'name'}))
+    email = forms.EmailField(max_length=150, required=True, widget=forms.TextInput(attrs={'placeholder': 'email'}))
+    issue = forms.CharField(required=True, widget=forms.Select(choices=issue_choices))
+    message = forms.CharField(required=True, widget=forms.Textarea(attrs={'placeholder': 'message',
+                                                           'rows':12,
+                                                           'cols':22,
+                                                           'style':'resize:none;'}))
