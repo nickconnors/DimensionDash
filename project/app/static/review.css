@@ -1,35 +1,38 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
+
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* font-family: 'Poppins', sans-serif; */
-}
+  font-family: 'Poppins', sans-serif;
 
+}
 html,body{
   display: grid;
   height: 100%;
   place-items: center;
   text-align: center;
-  background: url(review.jpg) no-repeat;
+  background: url(gif.gif) no-repeat;
   min-height: 100vh;
-  background-size: cover;
+  background-size: 1920px;
   background-position: center;
 }
+
+
+
 .container{
   position: relative;
   width: 400px;
-  background: #540f91;
+  background: rgb(26, 125, 13);
   padding: 20px 30px;
-  border: 1px solid #444;
+  border: 1px solid #196324;
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  box-sizing: border-box;
-  margin: 0;
 }
 .container .post{
   display: none;
@@ -101,7 +104,6 @@ form header{
   margin: 5px 0 20px 0;
   text-align: center;
   transition: all 0.2s ease;
-  font-family: 'Poppins', sans-serif;
 }
 form .textarea{
   height: 100px;
@@ -113,12 +115,11 @@ form .textarea textarea{
   width: 100%;
   outline: none;
   color: #eee;
-  border: 1px solid #333;
-  background: #420974;
+  border: 1px solid #000000;
+  background: #000000d3;
   padding: 10px;
   font-size: 17px;
   resize: none;
-  font-family: 'Poppins', sans-serif;
 }
 .textarea textarea:focus{
   border-color: #444;
@@ -133,15 +134,14 @@ form .btn button{
   width: 100%;
   border: 1px solid #444;
   outline: none;
-  background: #540f91;
+  background: #080709;
   color: #999;
   font-size: 17px;
   font-weight: 500;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'Poppins', sans-serif;
 }
 form .btn button:hover{
-  background: #390963;;
+  background: #07010c;;
 }
