@@ -56,7 +56,7 @@ body
 }
 .container .form .inputBox input, .container .form .inputBox select, .container .form .inputBox textarea
 {
-	padding: 12px 10px 12px 48px;
+	padding: 12px 15px 12px 15px;
 	border: none;
 	width: 100%;
 	background: #223243;
@@ -70,7 +70,7 @@ body
 	transition: 0.5s;
 	outline: none;
 }
-.container .form .inputBox span 
+/* .container .form .inputBox span 
 {
 	position: absolute;
 	left: 0;
@@ -81,7 +81,7 @@ body
 	transition: 0.5s;
 	letter-spacing: 0.05em;
 	color: rgba(255,255,255,0.5);
-}
+} */
 /* .container .form .inputBox input:valid ~ span,
 .container .form .inputBox input:focus ~ span
 {
