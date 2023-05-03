@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from .models import Review
 
 class SignupForm(UserCreationForm):
     username = forms.CharField(max_length=150, required=True)
@@ -18,6 +19,22 @@ class LoginForm(AuthenticationForm):
 
     class Meta:
         fields = ['username', 'password']
+
+class ReviewForm(forms.ModelForm):
+    RATINGS = [
+        (1, ''),
+        (2, ''),
+        (3, ''),
+        (4, ''),
+        (5, ''),
+    ]
+
+    rating = forms.ChoiceField(choices=RATINGS, widget=forms.RadioSelect(attrs={'class': 'star'}))
+    review_text = forms.CharField(widget=forms.Textarea(attrs={'cols': '30', 'placeholder': 'Describe your experience..'}))
+
+    class Meta:
+        model = Review
+        fields = ['rating', 'review_text']
 
 issue_choices = [(None, 'Select an issue'),
                  ('lag', 'Lag'), 

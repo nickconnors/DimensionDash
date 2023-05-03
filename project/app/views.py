@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, logout, login
-from .forms import LoginForm, SignupForm, ContactForm
+from .forms import LoginForm, SignupForm, ContactForm, ReviewForm
 from django.core.mail import send_mail
 from django.conf import settings
+from .models import Review
 
 def index(request):
     return render(request, 'index.html')
@@ -31,9 +33,67 @@ def contact(request):
         form = ContactForm()
     return render(request, 'contact.html', {'form' : form})
 
+# def reviewus(request):
+#     if request.user.is_authenticated:
+#         if request.method == "POST":
+#             print("post")
+#             form = ReviewForm(data=request.POST)
+#             print(request.POST)
+#             if form.is_valid():
+#                 rating = int(form.cleaned_data['rating'])
+#                 review_text = form.cleaned_data['review_text']
+#                 user = request.user
+
+#                 try:
+#                     review = Review.objects.get(user=user)
+#                     review.rating = rating
+#                     review.review_text = review_text
+#                     review.save()
+#                 except Review.DoesNotExist:
+#                     review = Review(user=user, rating=rating, review_text=review_text)
+#                     review.save()
+
+#                 return JsonResponse({'rating': rating, 'review_text': review_text})
+#             else:
+#                 print(form.errors)
+#         else:
+#            form = ReviewForm() 
+#            return render(request, 'reviewus.html', {'form' : form})
+#     else:
+#         return redirect('index')
+
 def reviewus(request):
     if request.user.is_authenticated:
-        return render(request, 'reviewus.html')
+        if request.method == "POST":
+            form = ReviewForm(data=request.POST)
+            if form.is_valid():
+                rating = int(form.cleaned_data['rating'])
+                review_text = form.cleaned_data['review_text']
+                user = request.user
+
+                try:
+                    review = Review.objects.get(user=user)
+                    review.rating = rating
+                    review.review_text = review_text
+                    review.save()
+                except Review.DoesNotExist:
+                    review = Review(user=user, rating=rating, review_text=review_text)
+                    review.save()
+
+                return JsonResponse({'rating': rating, 'review_text': review_text})
+            else:
+                return JsonResponse({'error': 'Form is not valid'})
+
+        else:
+            try:
+                review = Review.objects.get(user=request.user)
+                # review_text = review.review_text
+                context = {'form': ReviewForm(), 'review_exists': True, 'rating': review.rating, 'review_text': review.review_text}
+            except Review.DoesNotExist:
+                context = {'form': ReviewForm(), 'review_exists': False}
+
+            return render(request, 'reviewus.html', context)
+
     else:
         return redirect('index')
 

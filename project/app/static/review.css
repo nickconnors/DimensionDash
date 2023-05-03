@@ -9,6 +9,7 @@
   /* font-family: 'Poppins', sans-serif; */
 
 }
+
 html,body{
   display: grid;
   height: 100%;
@@ -20,9 +21,11 @@ html,body{
   background-position: center;
 }
 
+.test .comment {
+  font-family: 'Poppins', sans-serif;
+}
 
-
-.container{
+form .container{
   position: relative;
   width: 400px;
   background: rgb(26, 125, 13);
@@ -35,15 +38,15 @@ html,body{
   flex-direction: column;
   font-family: 'Poppins', sans-serif;
 }
-.container .post{
+form .container .post{
   display: none;
 }
-.container .text{
+form .container .text{
   font-size: 25px;
   color: #666;
   font-weight: 500;
 }
-.container .edit{
+form .container .edit{
   position: absolute;
   right: 10px;
   top: 5px;
@@ -52,10 +55,10 @@ html,body{
   font-weight: 500;
   cursor: pointer;
 }
-.container .edit:hover{
+form .container .edit:hover{
   text-decoration: underline;
 }
-.container .star-widget input{
+form .container .star-widget input{
   display: none;
 }
 .star-widget label{
@@ -76,28 +79,28 @@ input#rate-5:checked ~ label{
   color: #fe7;
   text-shadow: 0 0 20px #952;
 }
-#rate-1:checked ~ form header:before{
+#rate-1:checked ~ .test header:before{
   content: "I hate it! ";
 }
-#rate-2:checked ~ form header:before{
+#rate-2:checked ~ .test header:before{
   content: "Eh... ";
 }
-#rate-3:checked ~ form header:before{
+#rate-3:checked ~ .test header:before{
   content: "It's okay ";
 }
-#rate-4:checked ~ form header:before{
+#rate-4:checked ~ .test header:before{
   content: "I like it ";
 }
-#rate-5:checked ~ form header:before{
+#rate-5:checked ~ .test header:before{
   content: "I love it! ";
 }
-.container form{
+.container .test{
   display: none;
 }
-input:checked ~ form{
+input:checked ~ .test{
   display: block;
 }
-form header{
+.test header{
   width: 100%;
   font-size: 25px;
   color: #fe7;
@@ -106,12 +109,12 @@ form header{
   text-align: center;
   transition: all 0.2s ease;
 }
-form .textarea{
+.textarea{
   height: 100px;
   width: 100%;
   overflow: hidden;
 }
-form .textarea textarea{
+.textarea textarea{
   height: 100%;
   width: 100%;
   outline: none;
@@ -125,12 +128,12 @@ form .textarea textarea{
 .textarea textarea:focus{
   border-color: #444;
 }
-form .btn{
+.btn{
   height: 45px;
   width: 100%;
   margin: 15px 0;
 }
-form .btn button{
+.btn button{
   height: 100%;
   width: 100%;
   border: 1px solid #444;
@@ -143,6 +146,6 @@ form .btn button{
   cursor: pointer;
   transition: all 0.3s ease;
 }
-form .btn button:hover{
+.btn button:hover{
   background: #07010c;;
 }

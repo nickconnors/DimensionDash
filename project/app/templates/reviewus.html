@@ -3,47 +3,91 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'review.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+<form method="post" action="{% url 'reviewus' %}">
+  {% csrf_token %}
 <div class="container">
-  <div class="post">
-    <div class="text">Thanks for rating us!</div>
-    <div class="edit">EDIT</div>
-  </div>
-  <div class="star-widget">
-    <input type="radio" name="rate" id="rate-5">
-    <label for="rate-5" class="fas fa-star"></label>
-    <input type="radio" name="rate" id="rate-4">
-    <label for="rate-4" class="fas fa-star"></label>
-    <input type="radio" name="rate" id="rate-3">
-    <label for="rate-3" class="fas fa-star"></label>
-    <input type="radio" name="rate" id="rate-2">
-    <label for="rate-2" class="fas fa-star"></label>
-    <input type="radio" name="rate" id="rate-1">
-    <label for="rate-1" class="fas fa-star"></label>
-    <form action="#">
-      <header></header>
-      <div class="textarea">
-        <textarea cols="30" placeholder="Describe your experience.."></textarea>
+    {% if review_exists %}
+    <div class="post" style="display: block">
+    {% else %}
+    <div class="post">
+    {% endif %}
+      <div class="text">Thanks for rating us!</div>
+      <div class="edit">EDIT</div>
+    </div>
+    {% if review_exists %}
+    <div class="star-widget" style="display: none">
+    {% else %}
+    <div class="star-widget">
+    {% endif %}
+      <input type="radio" name="rating" id="rate-5" value="5">
+      <label for="rate-5" class="fas fa-star"></label>
+      <input type="radio" name="rating" id="rate-4" value="4">
+      <label for="rate-4" class="fas fa-star"></label>
+      <input type="radio" name="rating" id="rate-3" value="3">
+      <label for="rate-3" class="fas fa-star"></label>
+      <input type="radio" name="rating" id="rate-2" value="2">
+      <label for="rate-2" class="fas fa-star"></label>
+      <input type="radio" name="rating" id="rate-1" value="1">
+      <label for="rate-1" class="fas fa-star"></label>
+      <div class="test">
+        <header class="comment"></header>
+        <div class="textarea">
+          {{ form.review_text }}
+        </div>
+        <div class="btn">
+          <button type="submit" id="post-btn">Post</button>
+        </div>
       </div>
-      <div class="btn">
-        <button type="submit">Post</button>
-      </div>
-    </form>
+    </div>
   </div>
-</div>
+</form>
 
 <script>
-  const btn = document.querySelector("button");
-  const post = document.querySelector(".post");
-  const widget = document.querySelector(".star-widget");
-  const editBtn = document.querySelector(".edit");
-  btn.onclick = ()=>{
-    widget.style.display = "none";
-    post.style.display = "block";
-    editBtn.onclick = ()=>{
-      widget.style.display = "block";
-      post.style.display = "none";
+const btn = document.querySelector("#post-btn");
+const post = document.querySelector(".post");
+const widget = document.querySelector(".star-widget");
+const editBtn = document.querySelector(".edit");
+const ratingInput = document.querySelector('input[name="rating"]');
+const reviewText = document.querySelector('textarea[name="review_text"]');
+
+btn.onclick = ()=>{
+  // disable the button while the request is being sent
+  btn.disabled = true;
+  fetch('/reviewus/', {
+    method: 'POST',
+    body: new FormData(document.querySelector('form'))
+  }).then(response => {
+    if (response.ok) {
+      // extract the review data from the response
+      response.json().then(data => {
+        // update the content of the "post" div
+        post.style.display = "block";
+        widget.style.display = "none";
+        ratingInput.value = data.rating;
+        editBtn.onclick = ()=>{
+          widget.style.display = "block";
+          post.style.display = "none";
+          reviewText.value = data.review_text;
+        }
+      });
+    } else {
+      alert('Error submitting review');
     }
-    return false;
+    // enable the button again
+    btn.disabled = false;
+  });
+  return false;
+}
+</script>
+
+{% if review_exists %}
+<script>
+  editBtn.onclick = ()=>{
+    widget.style.display = "block";
+    post.style.display = "none";
+    document.getElementById(`rate-{{ rating }}`).checked = true;
+    reviewText.value = "{{ review_text }}";
   }
 </script>
+{% endif %}
 {% endblock %}
