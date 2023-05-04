@@ -11,14 +11,14 @@
 <header class="head">
     <!--Navbar-->
 <input type ="checkbox" name ="" id ="chk1">
-<div class="logo"><h1><a href="{% url 'index' %}"><img src="{% static 'logo2.png' %}"></a></h1></div>
+<div class="logo"><h1><a href="{% url 'index' %}"><img id="logo" src="{% static 'logo2.png' %}"></a></h1></div>
     </div>
     <ul>
         <li><a href="{% url 'index' %}">Home</a></li>
         <li><a href="{% url 'about' %}">About Us</a></li>
         <li><a href="{% url 'contact' %}">Contact Us</a></li>
         {% if user.is_authenticated %}
-            <li><a href="{% url 'reviewus' %}">Review Us</a></li>
+            <li><a href="{% url 'reviews' %}">Reviews</a></li>
             <li><a href="#">Play</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
         {% else %}

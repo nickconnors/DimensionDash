@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+{% load my_filters %}
+<link rel="stylesheet" href="{% static 'reviews.css' %}">
+<script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+
+<section id="reviews">
+
+    <div class="review-heading">
+        <h1>Reviews</h1>
+    </div>
+
+    <div class="reviews-box-container">
+
+        {% for review in reviews %}
+        <div class="review-box">
+
+            <div class="box-top">
+                <div class="profile">
+                    <div class="profile-img">
+                        <img class="user-img" src="{% static 'user.png' %}" />
+                    </div>
+                    <div class="name-user">
+                        <strong>@{{ review.user.username }}</strong>
+                    </div>
+                </div>
+
+                <div class="reviews">
+                    {% for i in review.rating|times %}
+                    <i class="fas fa-star"></i>
+                    {% endfor %}
+                    {% with num=review.rating %} 
+                    {% for i in 5|subtract:num|times %}
+                    <i class="far fa-star"></i>
+                    {% endfor %}
+                    {% endwith %}
+                </div>
+
+            </div>
+
+            <div class="text">
+                <p>{{ review.review_text }}</p>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+    const userImgs = document.querySelectorAll('.user-img');
+    userImgs.forEach(img => {
+      const randomHue = Math.floor(Math.random() * 360);
+      img.style.filter = `hue-rotate(${randomHue}deg)`;
+    });
+  </script>
+{% endblock %}

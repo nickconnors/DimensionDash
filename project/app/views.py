@@ -136,3 +136,7 @@ def loginUser(request):
 def logoutUser(request):
     logout(request)
     return redirect('index')
+
+def reviews(request):
+    reviews = Review.objects.all()
+    return render(request, 'reviews.html', context={'reviews': reviews})
