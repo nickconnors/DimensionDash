@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'download.css' %}">
+
+<div class="download">
+    <a href="https://dimensiondash.s3.amazonaws.com/Dimension_Dash.zip" download>
+        <img src="{% static 'windows.svg' %}" />
+    </a>
+</div>
+
+{% endblock %}

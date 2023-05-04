@@ -19,7 +19,7 @@
         <li><a href="{% url 'contact' %}">Contact Us</a></li>
         <li><a href="{% url 'reviews' %}">Reviews</a></li>
         {% if user.is_authenticated %}
-            <li><a href="#">Play</a></li>
+            <li><a href="{% url 'download' %}">Download</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
         {% else %}
             <li><a href="{% url 'login' %}">Login</a></li>

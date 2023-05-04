@@ -148,3 +148,9 @@ def reviews(request):
             pass
 
     return render(request, 'reviews.html', context={'reviews': reviews, 'review_exists': review_exists})
+
+def download(request):
+    if request.user.is_authenticated:
+        return render(request, 'download.html')
+    else:
+        return redirect('login')
