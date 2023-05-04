@@ -9,6 +9,13 @@
 
     <div class="review-heading">
         <h1>Reviews</h1>
+        {% if user.is_authenticated %}
+            {% if review_exists %}
+                <a class="createOrEdit" href="{% url 'reviewus' %}">Edit Review</a>
+            {% else %}
+                <a class="createOrEdit" href="{% url 'reviewus' %}">Create Review</a>
+            {% endif %}
+        {% endif %}
     </div>
 
     <div class="reviews-box-container">

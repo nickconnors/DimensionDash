@@ -95,7 +95,7 @@ def reviewus(request):
             return render(request, 'reviewus.html', context)
 
     else:
-        return redirect('index')
+        return redirect('login')
 
 def registerUser(request):
     if request.method == "POST":
@@ -139,4 +139,12 @@ def logoutUser(request):
 
 def reviews(request):
     reviews = Review.objects.all()
-    return render(request, 'reviews.html', context={'reviews': reviews})
+    review_exists = False
+    if request.user.is_authenticated:
+        try:
+            review = reviews.get(user=request.user)
+            review_exists = True
+        except Review.DoesNotExist:
+            pass
+
+    return render(request, 'reviews.html', context={'reviews': reviews, 'review_exists': review_exists})
