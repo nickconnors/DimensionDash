@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'submit_score.css' %}">
+<div id="file-drop" class="file-drop">
+    <label for="file-input">Drag and drop the leaderboard.txt file here, or click to select:</label>
+    <input type="file" id="file-input" name="file" accept=".txt" hidden>
+    <div id="file-name"></div>
+    <button id="upload-button" disabled>Submit</button>
+</div>
+
+<script>
+const fileDrop = document.getElementById("file-drop");
+const fileInput = document.getElementById("file-input");
+const fileName = document.getElementById("file-name");
+const uploadButton = document.getElementById("upload-button");
+
+fileDrop.addEventListener("dragover", (event) => {
+    event.preventDefault();
+    fileDrop.classList.add("dragover");
+});
+
+fileDrop.addEventListener("dragleave", () => {
+    fileDrop.classList.remove("dragover");
+});
+
+fileDrop.addEventListener("drop", (event) => {
+    event.preventDefault();
+    const file = event.dataTransfer.files[0];
+    fileName.innerText = file.name;
+    uploadButton.removeAttribute("disabled");
+});
+
+fileInput.addEventListener("change", () => {
+    const file = fileInput.files[0];
+    fileName.innerText = file.name;
+    uploadButton.removeAttribute("disabled");
+});
+
+uploadButton.addEventListener("click", () => {
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+    reader.readAsText(file);
+    reader.onload = () => {
+        const lines = reader.result.split("\n");
+        const num1 = parseInt(lines[0]);
+        const num2 = parseInt(lines[1]);
+        console.log(num1 + num2);
+
+        const formData = new FormData();
+        formData.append("score", num1 + num2);
+
+        fetch("/submit_score/", {
+            method: "POST",
+            body: formData
+        }).then(response => {
+            if (response.ok) {
+                window.location.href = "/";
+            }
+        }).catch(error => {
+            console.error(error);
+        });
+    };
+});
+</script>
+{% endblock %}

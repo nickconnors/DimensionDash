@@ -5,10 +5,15 @@ from django.contrib.auth import authenticate, logout, login
 from .forms import LoginForm, SignupForm, ContactForm, ReviewForm
 from django.core.mail import send_mail
 from django.conf import settings
-from .models import Review
+from .models import Review, UserScore
+from django.views.decorators.csrf import csrf_exempt
+
 
 def index(request):
-    return render(request, 'index.html')
+    scores = UserScore.objects.all().order_by('-highscore')
+    for score in scores:
+        print(score.user.username)
+    return render(request, 'index.html', context={'user_scores': scores})
 
 def about(request):
     return render(request, 'about.html')
@@ -32,35 +37,6 @@ def contact(request):
     else:
         form = ContactForm()
     return render(request, 'contact.html', {'form' : form})
-
-# def reviewus(request):
-#     if request.user.is_authenticated:
-#         if request.method == "POST":
-#             print("post")
-#             form = ReviewForm(data=request.POST)
-#             print(request.POST)
-#             if form.is_valid():
-#                 rating = int(form.cleaned_data['rating'])
-#                 review_text = form.cleaned_data['review_text']
-#                 user = request.user
-
-#                 try:
-#                     review = Review.objects.get(user=user)
-#                     review.rating = rating
-#                     review.review_text = review_text
-#                     review.save()
-#                 except Review.DoesNotExist:
-#                     review = Review(user=user, rating=rating, review_text=review_text)
-#                     review.save()
-
-#                 return JsonResponse({'rating': rating, 'review_text': review_text})
-#             else:
-#                 print(form.errors)
-#         else:
-#            form = ReviewForm() 
-#            return render(request, 'reviewus.html', {'form' : form})
-#     else:
-#         return redirect('index')
 
 def reviewus(request):
     if request.user.is_authenticated:
@@ -152,5 +128,28 @@ def reviews(request):
 def download(request):
     if request.user.is_authenticated:
         return render(request, 'download.html')
+    else:
+        return redirect('login')
+    
+@csrf_exempt
+def submit_score(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            score = int(request.POST.get("score", 0))
+
+            user = request.user
+
+            try:
+                user_score = UserScore.objects.get(user=user)
+                if score > user_score.highscore:
+                    user_score.highscore = score
+                    user_score.save()
+            except UserScore.DoesNotExist:
+                user_score = UserScore(user=user, highscore=score)
+                user_score.save()
+                    
+            return redirect('index')
+        else:
+            return render(request, 'submit_score.html')
     else:
         return redirect('login')

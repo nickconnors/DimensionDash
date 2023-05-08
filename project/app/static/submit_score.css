@@ -1,0 +1,46 @@
+#file-input {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  #file-input input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+    display: none;
+  }
+  
+  #file-drop {
+    position: relative;
+    padding-top: 150px;
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  #upload-button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+  }
+
+  #file-name {
+    text-align: center;
+    color: white;
+  }
+  
+  #file-drop label {
+    display: block;
+    padding: 20px;
+    border: 2px dashed #aaa;
+    font-size: 16px;
+    text-align: center;
+    color: white;
+  }
+  
+  #file-drop label:hover {
+    border: 2px dashed white;
+  }
