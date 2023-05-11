@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
+body {
+    background-position: center;
+    background-color: rgba(175, 223, 88);
+  }
+
 #reviews {
     margin-top: 100px;
     display: flex;
@@ -30,8 +35,7 @@ a {
 .review-heading h1 {
     font-size: 2.2rem;
     font-weight: 500;
-    /* background-color: #202020; */
-    color: #ffffff;
+    color: black;
     padding: 10px 20px;
     margin-bottom: 10px;
 }
@@ -44,14 +48,6 @@ a {
     padding: 10px 20px;
 }
 
-/* .review-heading span {
-    font-size: 1.3rem;
-    color: #252525;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-} */
-
 .reviews-box-container {
     display: flex;
     justify-content: center;
@@ -63,7 +59,7 @@ a {
 .review-box {
     width: 500px;
     box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
-    background-color: #ffffff;
+    background-color: #ffffffa1;
     padding: 20px;
     margin: 15px;
     cursor: pointer;

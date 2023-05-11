@@ -12,7 +12,9 @@ body
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
-	background: #223243;
+	/* background: #223243; */
+	background: url(login.png) no-repeat;
+	background-position: center;
 }
 .container 
 {
@@ -37,6 +39,9 @@ body
 .container.signinForm .form.signup
 {
 	display: none;
+}
+.container.signinForm, .container {
+	background: #223243;
 }
 
 .container.signinForm .form.signin 

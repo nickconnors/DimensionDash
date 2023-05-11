@@ -3,17 +3,21 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'leaderboard.css' %}">
 <div id="container">
+  <div id="paragraph">
+    <p>Welcome to the thrilling world of Dimension Dash! Our action-packed platform game is designed to test the skills of both seasoned veterans and newcomers alike. Are you ready to take on the challenge with our incredible cast of characters, including the agile Virtual Guy, the daring Pink Man, and the mysterious Mask Dude? Get ready for an adrenaline-fueled adventure that will keep you on the edge of your seat! We hope you enjoy playing Dimension Dash as much as we enjoyed creating it.</p>
+  </div>
+  <div class="leaderboard">
     <div class="leaderboard-heading">
-        <h1>Leaderboard</h1>
-        {% if user.is_authenticated %}
-            <a class="submit-score" href="{% url 'submit_score' %}">Submit Score</a>
-        {% endif %}
+      <h1>Leaderboard</h1>
+      {% if user.is_authenticated %}
+        <a class="submit-score" href="{% url 'submit_score' %}">Submit Score</a>
+      {% endif %}
     </div>
-
     {% for user_score in user_scores  %}
-    <div class="leaderboard-row">
+      <div class="leaderboard-row">
         <div class="user">{{ user_score.user.username }}</div><div class="score">{{ user_score.highscore }}</div>
-    </div>
+      </div>
     {% endfor %}
+  </div>
 </div>
 {% endblock %}
