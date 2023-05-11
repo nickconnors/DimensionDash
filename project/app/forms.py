@@ -37,12 +37,14 @@ class ReviewForm(forms.ModelForm):
         fields = ['rating', 'review_text']
 
 issue_choices = [(None, 'Select an issue'),
-                 ('lag', 'Lag'), 
-                 ('bug', 'Bug'), 
-                 ('update', 'Software Update'), 
-                 ('multiplayer', 'Multiplayer'), 
-                 ('singleplayer', 'Single Player'),
-                 ('other', 'Other')]
+                 ('Lag', 'Lag'), 
+                 ('Bug', 'Bug'), 
+                 ('Software Update', 'Software Update'), 
+                 ('Multiplayer', 'Multiplayer'), 
+                 ('Single Player', 'Single Player'),
+                 ('New User', 'New User'),
+                 ('General Question', 'General Question'),
+                 ('Other', 'Other')]
 
 class ContactForm(forms.Form):
     name = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'placeholder': 'name'}))

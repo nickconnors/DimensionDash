@@ -6,7 +6,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* font-family: 'Poppins', sans-serif; */
 
 }
 
@@ -43,7 +42,7 @@ form .container .post{
 }
 form .container .text{
   font-size: 25px;
-  color: #666;
+  color: black;
   font-weight: 500;
 }
 form .container .edit{
@@ -51,7 +50,7 @@ form .container .edit{
   right: 10px;
   top: 5px;
   font-size: 16px;
-  color: #666;
+  color: black;
   font-weight: 500;
   cursor: pointer;
 }

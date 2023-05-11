@@ -63,7 +63,6 @@ def reviewus(request):
         else:
             try:
                 review = Review.objects.get(user=request.user)
-                # review_text = review.review_text
                 context = {'form': ReviewForm(), 'review_exists': True, 'rating': review.rating, 'review_text': review.review_text}
             except Review.DoesNotExist:
                 context = {'form': ReviewForm(), 'review_exists': False}
