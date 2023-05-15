@@ -1,23 +1,24 @@
-body {
-  background: url(clip2.gif) no-repeat;
-  min-height: 100vh;
-  background-position: center;
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+p, .leaderboard-heading h1 {
+  font-family: poppins;
 }
 
 #container {
   margin: 150px auto 10px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
   background-color: rgba(190, 203, 211, 0.9);
-  padding: 10px;
-  width: 70%;
+  padding: 10px 0;
+  width: 50%;
 }
 
 .leaderboard {
-  max-width: 500px;
-  width: 40%;
+  /* max-width: 500px; */
+  width: 80%;
+  margin-top: 40px;
+  /* padding-bottom: 20px; */
 }
 
 .leaderboard-heading {
@@ -25,6 +26,7 @@ body {
   font-weight: 500;
   color: black;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .leaderboard-row {
@@ -52,11 +54,11 @@ body {
 }
 
 #paragraph {
-  max-width: 500px;
-  width: 60%;
+  width: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 40px;
 }
 
 p {
@@ -64,16 +66,20 @@ p {
   text-align: center;
 }
 
+#gif img{
+  display: block;
+  margin: 0 auto;
+  max-width: 90%;
+  /* height: auto;
+  max-height: 300px; */
+  /* margin-bottom: 30px; */
+}
+
 @media (max-width: 1280px) {
   #container {
-    flex-direction: column;
-    align-items: center;
+    width: 90%;
   }
-  .leaderboard, #paragraph {
-    width: 100%;
-    margin: 0;
-  }
-  .leaderboard {
+  /* .leaderboard {
     margin-top: 30px;
-  }
+  } */
 }

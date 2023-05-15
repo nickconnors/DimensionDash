@@ -14,10 +14,10 @@ html,body{
   height: 100%;
   place-items: center;
   text-align: center;
-  background: url(gif.gif) no-repeat;
+  /* background: url(clip2.gif) no-repeat;
   min-height: 100vh;
   background-size: 1920px;
-  background-position: center;
+  background-position: center; */
 }
 
 .test .comment {

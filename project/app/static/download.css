@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
 body {
-    background-color: rgb(228, 186, 136)
+    background: rgb(157, 204, 233);
 }
 
 .download {
@@ -18,7 +20,9 @@ body {
 }
 
 p {
+    font-family: poppins;
     color: black;
-    width: 50%;
-    font-size: 1.0rem;
+    width: 75%;
+    font-size: 1.2rem;
+    text-align: center;
 }
