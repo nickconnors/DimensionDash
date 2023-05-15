@@ -2,7 +2,6 @@
 
 body {
     background-position: center;
-    /* background: rgb(181, 81, 32); */
   }
 
 #reviews {
@@ -95,11 +94,6 @@ a {
     font-size: 1.1rem;
     letter-spacing: 0.5px;
 }
-
-/* .name-user span {
-    color: #979797;
-    font-size: 0.8rem;
-} */
 
 .reviews i{
     color: #f9d71c;

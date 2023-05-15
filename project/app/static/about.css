@@ -6,10 +6,6 @@ body
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* min-height: 100vh;
-	background: url(back.png) no-repeat;
-	background-position: center;
-	background-size: cover; */
 	font-family: 'Poppins', sans-serif;
 }
 .container

@@ -15,10 +15,8 @@ p, .leaderboard-heading h1 {
 }
 
 .leaderboard {
-  /* max-width: 500px; */
   width: 80%;
   margin-top: 40px;
-  /* padding-bottom: 20px; */
 }
 
 .leaderboard-heading {
@@ -70,16 +68,10 @@ p {
   display: block;
   margin: 0 auto;
   max-width: 90%;
-  /* height: auto;
-  max-height: 300px; */
-  /* margin-bottom: 30px; */
 }
 
 @media (max-width: 1280px) {
   #container {
     width: 90%;
   }
-  /* .leaderboard {
-    margin-top: 30px;
-  } */
 }

@@ -11,8 +11,6 @@ from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     scores = UserScore.objects.all().order_by('-highscore')
-    for score in scores:
-        print(score.user.username)
     return render(request, 'index.html', context={'user_scores': scores})
 
 def about(request):
